@@ -1,0 +1,26 @@
+<div class="card" [ngClass]="getState()" *ngIf="fiend.unit()">
+  <span class="exit" (click)="menu = true"><i class="fas fa-window-maximize"></i></span>
+  <span class="attack" (click)="setAttackMode()" *ngIf="turn"><i class="fas fa-gavel"></i></span>
+  <div class="unit" *ngFor="let unit of fiend.squad">
+    <div class="outer-unit">
+      <div class="rarity" [ngClass]="getRarity(unit)">
+        <div class="inner-unit" [ngClass]="getSize(unit)" [ngStyle]="{'background-color': fiend.unit().color}"></div>
+      </div>
+    </div>
+    <div class="health-bar"><div class="health" [ngStyle]="getHealth(unit, fiend)"></div></div>
+  </div>
+  <div class="menu" *ngIf="menu">
+    <div class="rarity-label" [ngClass]="getRarity(fiend.unit())">
+      <h1>{{fiend.unit().name}}</h1>
+      <span class="exit" (click)="menu = false"><i class="fas fa-window-close"></i></span>
+      <span class="level">{{fiend.unit().level}}</span>
+    </div>
+    <div>{{getRarityLabel()}}</div>
+    <div>{{fiend.unit().attribute}}</div>
+    <div>Health: {{fiend.baseHealth}}</div>
+    <div>Damage: {{fiend.baseDamage}}</div>
+    <div>Accuracy: {{fiend.baseAccuracy}}</div>
+    <button class="attack" (click)="setAttackMode()">Attack</button>
+  </div>
+</div>
+<div class="name" *ngIf="fiend.unit()">{{fiend.unit().name}}</div>

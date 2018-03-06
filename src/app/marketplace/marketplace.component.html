@@ -1,0 +1,56 @@
+<h1 class="header" (click)="gui.searchModal = true">Marketplace</h1>
+<div class="center">
+  <div class="fiend-card" *ngFor="let unit of search">
+    <div class="preview">
+      <div class="outer-unit">
+        <div class="rarity" [ngClass]="getRarity(unit)">
+          <div class="inner-unit" [ngClass]="getSize(unit)" [ngStyle]="{'background-color': unit.color}"></div>
+        </div>
+      </div>
+    </div>
+    <div class="info">
+      <h1>{{unit.name}}</h1>
+      <div class="stats">
+        <p>Level: {{unit.level}}</p>
+        <p>Attribute: {{unit.attribute}}</p>
+        <p>Rarity: {{getRarityLabel(unit)}}</p>
+        <p>Health: {{unit.health}}</p>
+        <p>Damage: {{unit.damage}}</p>
+        <p>Accuracy: {{unit.accuracy}}</p>
+        <p>Ability: {{unit.ability}}</p>
+      </div>
+    </div>
+    <div class="cost">
+      <span>{{getCost(unit)}} eth <i class="fab fa-ethereum"></i></span>
+      <button><i class="fas fa-shopping-cart"></i></button>
+    </div>
+  </div>
+</div>
+
+<div class="search-modal" *ngIf="gui.searchModal">
+  <div class="search-card">
+    <span class="exit" (click)="exit()"><i class="fas fa-times"></i></span>
+    <div class="options-group">
+      <div class="filter-group">
+        <span>Use Filters</span><div class="filter-checkbox" [ngClass]="{'active': gui.filters}" (click)="gui.filters = !gui.filters"><div class="filter-item">{{gui.filters ? 'on' : 'off'}}</div></div>
+      </div>
+      <button (click)="onBattle.emit(true)">Battle <small>Beta</small></button>
+    </div>
+    <div class="search-name-group">
+      <input class="search-name" placeholder="Name" [(ngModel)]="gui.searchName">
+      <span (click)="gui.searchName = ''">clear</span>
+    </div>
+    <div class="search-dropdown" *ngFor="let searchItem of searchFilterItems()" [ngClass]="{'active': searchItem.active && gui.filters}">
+      <div class="search-label">
+        <span class="search-active" (click)="searchItem.active = !searchItem.active"><span></span></span>
+        {{searchItem.name.substring(0,1).toUpperCase() + searchItem.name.substring(1)}}
+        <strong class="search-selected" (click)="toggleSearchFilter(searchItem.name)">{{gui[searchItem.name].selected}}</strong>
+      </div>
+      <div class="search-filter" *ngIf="isSearchFilterOpen(searchItem.name)" [ngClass]="isSearchFilterDying(searchItem.name)">
+        <div class="search-options"><span *ngFor="let option of searchItem.options" (click)="searchItem.selected = option">{{option}}</span></div>
+        <div class="select-bar"><div class="selected" [ngStyle]="getSelectStyle(searchItem)"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+

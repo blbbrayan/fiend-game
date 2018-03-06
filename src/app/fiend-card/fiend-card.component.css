@@ -1,0 +1,249 @@
+.selected{
+  color: red;
+  cursor: default;
+}
+
+.card{
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  margin: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: rgba(232, 232, 232, .1);
+  border-radius: 100%;
+  transition: .3s;
+  cursor: pointer;
+  position: relative;
+}
+
+.card, .card *{
+  user-select: none !important;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+}
+
+.card.attack{
+  box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3);
+  background-color: #ffa0a0;
+}
+
+.outer-unit {
+  border-radius: 100%;
+  border: 2px solid rgba(0,0,0,0.3);
+  cursor: pointer;
+  margin: 2px 2px 0;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  display: inline-block;
+}
+
+.health, .health-bar{
+  height: 6px;
+  border-radius: 12px;
+}
+
+.health{
+  background-color: green;
+}
+
+.health-bar{
+  background: darkgrey;
+  width: 28px;
+  margin: -3px auto 0;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
+}
+
+.unit{
+  display: inline-block;
+}
+
+.rarity{
+  border: 4px solid;
+  border-radius: 100%;
+}
+
+.inner-unit{
+  border-radius: 100%;
+}
+
+.size1{
+  width: 100px;
+  height: 100px;
+}
+
+.size2{
+  width: 42px;
+  height: 42px;
+}
+
+.size3{
+  width: 38px;
+  height: 38px;
+}
+
+.size4{
+  width: 32px;
+  height: 32px;
+}
+
+.name{
+  width: 140px;
+  text-align: center;
+  padding-left: 10px;
+  display: inline-block;
+}
+
+.card .common{
+  border-color: grey;
+}
+
+.card .uncommon{
+  border-color: brown;
+}
+
+.card .rare{
+  border-color: royalblue;
+}
+
+.card .epic{
+  border-color: mediumpurple;
+}
+
+.card .legendary{
+  border-color: darkorange;
+}
+
+.card.attack .outer-unit{
+  animation: shake 1.2s cubic-bezier(.36,.07,.19,.97) both infinite;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.card.attack .outer-unit {
+  box-shadow: 0 13px 15px 0 rgba(0,0,0,0.3);
+}
+
+.menu{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 140px;
+  height: 165px;
+  background-color: white;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,0,0,0.3);
+  animation: menu-open .3s;
+}
+
+.menu .attack{
+  position: absolute;
+  bottom: 5px;
+  left: calc(50% - 50px);
+  width: 100px;
+  height: 32px;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+.menu h1{
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 17px;
+}
+
+.menu .unit-label{
+  font-size: 15px;
+}
+
+.card .exit{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.menu .exit{
+  position: absolute;
+  right: 3px;
+  top: 2px;
+}
+
+.level{
+  position: absolute;
+  left: 7px;
+  top: 0;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.rarity-label{
+  color: white;
+}
+
+.menu .common{
+  background-color: grey;
+}
+
+.menu .uncommon{
+  background-color: brown;
+}
+
+.menu .rare{
+  background-color: royalblue;
+}
+
+.menu .epic{
+  background-color: mediumpurple;
+}
+
+.menu .legendary{
+  background-color: darkorange;
+}
+
+.card > .attack{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes menu-open {
+  0%{
+    top: 10px;
+    left: 10px;
+    width: 120px;
+    height: 125px;
+    border-radius: 100%;
+  }
+  80%{
+    top: -10px;
+    left: -10px;
+    width: 160px;
+    height: 185px;
+    border-radius: 0;
+  }
+  100%{
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 165px;
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, -1px, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 1px, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 3px, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(3px, 1px, 0);
+  }
+}

@@ -1,0 +1,418 @@
+.center{
+  text-align: center;
+}
+
+.header{
+  cursor: pointer;
+  transition: .3s;
+}
+
+.header:hover{
+  padding: 14px 0;
+  box-shadow: 0 13px 15px 0 rgba(0,0,0,0.3);
+}
+
+/*fiend card stuff*/
+
+.fiend-card{
+  display: inline-flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  margin: 10px 5px;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  flex-direction: column;
+  width: 168px;
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+  border-radius: 7px;
+}
+
+.preview{
+  height: 118px;
+  line-height: 218px;
+  text-align: center;
+}
+
+.info h1{
+  font-size: 1.6em;
+  white-space: nowrap;
+  text-align: center;
+  border-bottom: 2px solid rgba(0, 0, 0, .25);
+  padding: 3px;
+  margin: 0 0 6px;
+}
+
+.info p{
+  margin: 2px 0;
+}
+
+.cost{
+  position: relative;
+  border-top: 2px solid rgba(0, 0, 0, 0.25);
+  margin-top: 3px;
+  padding: 3px 5px;
+}
+
+.cost span{
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.cost button{
+  position: absolute;
+  top: 5px;
+  right: -15px;
+  width: 40px;
+  border: 2px solid white;
+  border-radius: 100%;
+  height: 40px;
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 7px 9px 0 rgba(0,0,0,0.3);
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.stats{
+  padding-left: 5px;
+  text-align: left;
+}
+
+/*search modal stuff*/
+
+.search-filter{
+  background-color: #b98b8b;
+  margin-top: -6px;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  animation: openSearchFilter .3s;
+  margin-bottom: 12px;
+}
+
+.search-filter.dying{
+  animation: closeSearchFilter .3s;
+}
+
+@keyframes openSearchFilter {
+  0%{
+    height: 0;
+    color: transparent;
+  }
+  80%{
+    color: transparent;
+  }
+  100%{
+    height: 31px;
+    color: white;
+  }
+}
+
+@keyframes closeSearchFilter {
+  0%{
+    height: 31px;
+    color: white;
+  }
+  20%{
+    color: transparent;
+  }
+  100%{
+    height: 0;
+    color: transparent;
+  }
+}
+
+.search-options{
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-bar, .selected{
+  height: 6px;
+  border-radius: 7px;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.select-bar{
+  margin-bottom: -6px;
+}
+
+.selected{
+  background-color: white;
+  transition: .3s;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+}
+
+.search-filter span{
+  width: 100%;
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+  padding: 12px 0;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.search-filter span:hover{
+  background-color: rgba(255, 255, 255, .15);
+}
+
+.search-modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.search-card{
+  position: relative;
+  width: 84%;
+  margin: 100px auto 0;
+  background-color: #f7f7f7;
+  padding: 5%;
+  border-radius: 7px;
+  box-shadow: 0 7px 9px 0 rgba(0,0,0,0.3);
+  animation: openSearchModal .4s;
+}
+
+@keyframes openSearchModal {
+  0%{
+    margin-top: 0;
+    opacity: .5;
+  }
+  30%{
+    opacity: 1;
+  }
+  70%{
+    margin-top: 120px;
+  }
+  100%{
+    margin-top: 100px;
+  }
+}
+
+.search-card .exit{
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  background-color: #8b9cb9;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.search-label{
+  display: block;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  border-radius: 3px;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  margin: 6px 0;
+  transition: .3s;
+  position: relative;
+  padding: 10px 10px 10px 60px;
+  color: rgba(0,0,0,0.67);
+}
+
+.search-dropdown.active .search-label{
+  background-color: white;
+}
+
+.search-label .search-selected{
+  width: 50%;
+  float: right;
+  border-left: 1px solid black;
+  text-align: right;
+  cursor: pointer;
+}
+
+.search-active{
+  display: block;
+  border-right: 1px solid rgba(0,0,0,0.3);
+  position: absolute;
+  width: 43px;
+  height: 43px;
+  top: 0;
+  left: 0;
+  text-align: center;
+  line-height: 48px;
+  cursor: pointer;
+}
+
+.search-active span{
+  border-radius: 100%;
+  background-color: gray;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  transition: .3s;
+}
+
+.search-dropdown.active .search-active span{
+  background-color: green;
+}
+
+.options-group{
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+}
+
+.options-group button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border: none;
+  height: 30px;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  border-radius: 3px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.filter-group{
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filter-group > span{
+  padding-right: 15px;
+}
+
+.filter-checkbox{
+  width: 100px;
+  height: 25px;
+  background-color: gray;
+  border-radius: 7px;
+  display: inline-block;
+  transition: .3s;
+}
+
+.filter-checkbox.active{
+  background-color: green;
+}
+
+.filter-item{
+  width: 50px;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  height: 25px;
+  text-align: center;
+  line-height: 24px;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.filter-checkbox.active .filter-item{
+  margin-left: 50%;
+}
+
+.search-dropdown{
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-name-group{
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  margin: 24px auto;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+}
+
+.search-name{
+  width: 100%;
+  font-size: 20px;
+  height: 43px;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  box-sizing: border-box;
+}
+
+.search-name-group span{
+  height: 43px;
+  background-color: white;
+  border-left: 2px solid rgba(0,0,0,0.3);
+  margin-left: -2px;
+  line-height: 43px;
+  padding: 0 25px;
+  box-sizing: border-box;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/*unit stuff*/
+
+.outer-unit {
+  border-radius: 100%;
+  border: 2px solid rgba(0,0,0,0.3);
+  cursor: pointer;
+  margin: 2px 2px 0;
+  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+  display: inline-block;
+}
+
+.rarity{
+  border: 4px solid;
+  border-radius: 100%;
+}
+
+.inner-unit{
+  border-radius: 100%;
+}
+
+.size1{
+  width: 100px;
+  height: 100px;
+}
+
+.size2{
+  width: 42px;
+  height: 42px;
+}
+
+.size3{
+  width: 38px;
+  height: 38px;
+}
+
+.size4{
+  width: 32px;
+  height: 32px;
+}
+
+.rarity.common{
+  border-color: grey;
+}
+
+.rarity.uncommon{
+  border-color: brown;
+}
+
+.rarity.rare{
+  border-color: royalblue;
+}
+
+.rarity.epic{
+  border-color: mediumpurple;
+}
+
+.rarity.legendary{
+  border-color: darkorange;
+}

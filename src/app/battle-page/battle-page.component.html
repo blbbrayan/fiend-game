@@ -1,0 +1,23 @@
+<h1 class="header">Team {{turn?'One':'Two'}}</h1>
+<div class="card">
+  <fiend-card
+    *ngFor="let fiend of teamOne"
+    [fiend]="fiend"
+    [attackMode]="getAttackMode(fiend)"
+    [turn]="isTurn(fiend, true)"
+    (click)="select(fiend)"
+    (onAttack)="selectUnit(fiend)"
+  ></fiend-card>
+  <hr [ngStyle]="turnStyle()">
+  <fiend-card
+    *ngFor="let fiend of teamTwo"
+    [fiend]="fiend"
+    [attackMode]="getAttackMode(fiend)"
+    [turn]="isTurn(fiend, false)"
+    (click)="select(fiend)"
+    (onAttack)="selectUnit(fiend)"
+  ></fiend-card>
+</div>
+<div *ngIf="history && history.length > 0">
+  <dice *ngFor="let report of history[history.length-1].reports" [roll]="report.roll" [hit]="report.hit"></dice>
+</div>
