@@ -1,4 +1,5 @@
 <h1 class="header" (click)="gui.searchModal = true">Marketplace</h1>
+
 <div class="center">
   <div class="fiend-card" *ngFor="let unit of search">
     <div class="preview">
@@ -17,7 +18,7 @@
         <p>Health: {{unit.health}}</p>
         <p>Damage: {{unit.damage}}</p>
         <p>Accuracy: {{unit.accuracy}}</p>
-        <p>Ability: {{unit.ability}}</p>
+        <p>Ability: {{unit.ability?.name || 'In-Dev'}}</p>
       </div>
     </div>
     <div class="cost">
@@ -53,4 +54,3 @@
     </div>
   </div>
 </div>
-

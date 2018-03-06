@@ -20,7 +20,7 @@
     <div>Health: {{fiend.baseHealth}}</div>
     <div>Damage: {{fiend.baseDamage}}</div>
     <div>Accuracy: {{fiend.baseAccuracy}}</div>
-    <button class="attack" (click)="setAttackMode()">Attack</button>
+    <div>Ability: {{fiend.unit().ability ? fiend.unit().ability.name : 'In-Dev.'}}</div>
   </div>
 </div>
 <div class="name" *ngIf="fiend.unit()">{{fiend.unit().name}}</div>

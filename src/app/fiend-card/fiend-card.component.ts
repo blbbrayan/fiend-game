@@ -15,6 +15,10 @@ export class FiendCardComponent {
   @Input() turn: boolean = false;
   menu: boolean;
 
+  constructor(){
+    setTimeout(()=>console.log(this.fiend.unit()), 1000);
+  }
+
   getState(){
     return {
       attack: this.attackMode

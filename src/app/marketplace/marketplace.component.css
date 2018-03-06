@@ -234,9 +234,19 @@
 .search-label .search-selected{
   width: 50%;
   float: right;
-  border-left: 1px solid black;
+  border-left: 1px solid rgba(0, 0, 0, 0.3);
   text-align: right;
   cursor: pointer;
+  height: 43px;
+  line-height: 43px;
+  margin-top: -10px;
+  margin-right: -10px;
+  padding-right: 10px;
+  transition: .3s;
+}
+
+.search-label .search-selected:hover{
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
 }
 
 .search-active{
@@ -250,6 +260,11 @@
   text-align: center;
   line-height: 48px;
   cursor: pointer;
+  transition: .3s;
+}
+
+.search-active:hover{
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.3);
 }
 
 .search-active span{

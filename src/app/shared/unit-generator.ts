@@ -41,7 +41,7 @@ export class UnitGenerator {
     if (unit.ability)
       ability = Abilities.load(unit.ability);
 
-    let fiend = new Fiend(name, rarity, level, attribute, unit.size, unit.color, ability);
+    let fiend = new Fiend(unit.name, rarity, level, attribute, unit.size, unit.color, ability);
     fiend.color = unit.color;
 
     return fiend;
