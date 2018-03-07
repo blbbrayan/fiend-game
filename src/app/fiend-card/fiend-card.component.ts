@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FiendGroup} from "../shared/fiend-group";
-import {Global} from "../shared/global";
+import {FiendGroup} from '../shared/fiend-group';
+import {Global} from '../shared/global';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'fiend-card',
   templateUrl: './fiend-card.component.html',
   styleUrls: ['./fiend-card.component.css']
@@ -10,40 +11,40 @@ import {Global} from "../shared/global";
 export class FiendCardComponent {
 
   @Input() fiend: FiendGroup;
-  @Output() onAttack: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() AttackClickHandler: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() attackMode: boolean;
-  @Input() turn: boolean = false;
+  @Input() turn = false;
   menu: boolean;
 
-  constructor(){
-    setTimeout(()=>console.log(this.fiend.unit()), 1000);
+  constructor() {
+    setTimeout(() => console.log(this.fiend.unit()), 1000);
   }
 
-  getState(){
+  getState() {
     return {
       attack: this.attackMode
-    }
+    };
   }
 
-  getRarity(unit){
+  getRarity(unit) {
     return {[Global.rarities[unit.rarity]]: true};
   }
 
-  getSize(unit){
+  getSize(unit) {
     return {['size' + unit.size]: true};
   }
 
-  getRarityLabel(){
+  getRarityLabel() {
     return Global.rarities[this.fiend.unit().rarity];
   }
 
-  getHealth(unit, squad){
-    return {width: unit.health / squad.baseHealth * 100 + '%'}
+  getHealth(unit, squad) {
+    return { width: unit.health / squad.baseHealth * 100 + '%' };
   }
 
-  setAttackMode(){
+  setAttackMode() {
     this.menu = false;
-    this.onAttack.emit(true);
+    this.AttackClickHandler.emit(true);
   }
 
 }

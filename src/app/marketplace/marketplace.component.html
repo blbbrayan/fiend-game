@@ -35,7 +35,7 @@
       <div class="filter-group">
         <span>Use Filters</span><div class="filter-checkbox" [ngClass]="{'active': gui.filters}" (click)="gui.filters = !gui.filters"><div class="filter-item">{{gui.filters ? 'on' : 'off'}}</div></div>
       </div>
-      <button (click)="onBattle.emit(true)">Battle <small>Beta</small></button>
+      <button (click)="BattleClickHandler.emit(true)">Battle <small>Beta</small></button>
     </div>
     <div class="search-name-group">
       <input class="search-name" placeholder="Name" [(ngModel)]="gui.searchName">

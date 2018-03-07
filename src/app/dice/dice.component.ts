@@ -1,12 +1,13 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Global} from "../shared/global";
+import {Global} from '../shared/global';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'dice',
   templateUrl: './dice.component.html',
   styleUrls: ['./dice.component.css']
 })
-export class DiceComponent{
+export class DiceComponent {
 
   @Input() roll: number;
   @Input() hit: boolean;
@@ -15,14 +16,14 @@ export class DiceComponent{
   x: number;
   y: number;
 
-  constructor(){
+  constructor() {
     this.x = Global.random(innerWidth - 75);
     this.y = Global.random(innerHeight - 75);
     this.active = true;
-    setTimeout(()=>this.active=false, 3000);
+    setTimeout(() => this.active = false, 3000);
   }
 
-  getLocation(){
-    return {top: this.y + 'px', left: this.x + 'px', color: this.hit ? 'green' : 'red'}
+  getLocation() {
+    return {top: this.y + 'px', left: this.x + 'px', color: this.hit ? 'green' : 'red'};
   }
 }

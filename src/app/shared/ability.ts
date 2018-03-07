@@ -1,6 +1,6 @@
-import {FiendGroup} from "./fiend-group";
+import {FiendGroup} from './fiend-group';
 
-export class Ability{
+export class Ability {
 
   name: string;
   desc: string;
@@ -8,14 +8,14 @@ export class Ability{
   fn: any;
   stats: any;
 
-  constructor(name, event, stats, fn){
+  constructor(name, event, stats, fn) {
     this.name = name;
     this.event = event;
     this.stats = stats;
     this.fn = fn;
   }
 
-  run(caster?: FiendGroup, target?: FiendGroup, allies?: FiendGroup[], enemies?: FiendGroup[]){
+  run(caster?: FiendGroup, target?: FiendGroup, allies?: FiendGroup[], enemies?: FiendGroup[]) {
     this.fn(caster, target, allies, enemies);
   }
 

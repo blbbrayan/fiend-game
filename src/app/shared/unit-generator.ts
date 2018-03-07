@@ -1,7 +1,7 @@
-import {Fiend} from "./fiend";
-import {Global} from "./global";
-import {Unit} from "./unit";
-import {Abilities} from "./abilities";
+import {Fiend} from './fiend';
+import {Global} from './global';
+import {Unit} from './unit';
+import {Abilities} from './abilities';
 
 export class UnitGenerator {
 
@@ -10,7 +10,7 @@ export class UnitGenerator {
   attributes: string[];
   traits: { name: string, type: string }[];
   types: any;
-  combos: number = 0;
+  combos = 0;
 
   constructor() {
     this.rarities = [1, 2, 3, 4, 5];
@@ -33,24 +33,25 @@ export class UnitGenerator {
   }
 
   generate(unit: Unit, rarityI?: number, levelI?: number, attributeI?: string) {
-    let rarity = rarityI || this.rarities[Global.random(this.rarities.length - 1)];
-    let level = levelI || this.levels[Global.random(this.levels.length - 1)];
-    let attribute = attributeI || this.attributes[Global.random(this.attributes.length - 1)];
+    const rarity = rarityI || this.rarities[Global.random(this.rarities.length - 1)];
+    const level = levelI || this.levels[Global.random(this.levels.length - 1)];
+    const attribute = attributeI || this.attributes[Global.random(this.attributes.length - 1)];
 
     let ability;
-    if (unit.ability)
+    if (unit.ability) {
       ability = Abilities.load(unit.ability);
+    }
 
-    let fiend = new Fiend(unit.name, rarity, level, attribute, unit.size, unit.color, ability);
+    const fiend = new Fiend(unit.name, rarity, level, attribute, unit.size, unit.color, ability);
     fiend.color = unit.color;
 
     return fiend;
   }
 
   generateAll(units: Unit[]) {
-    let unitList: Fiend[] = [];
+    const unitList: Fiend[] = [];
     units.forEach(unit => {
-        let ability = unit.ability ? Abilities.load(unit.ability) : undefined;
+        const ability = unit.ability ? Abilities.load(unit.ability) : undefined;
         this.rarities.forEach(rarity =>
           this.levels.forEach(level =>
             this.attributes.forEach(attribute =>
@@ -62,5 +63,4 @@ export class UnitGenerator {
     );
     return unitList;
   }
-
 }

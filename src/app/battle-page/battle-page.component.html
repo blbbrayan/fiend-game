@@ -6,7 +6,7 @@
     [attackMode]="getAttackMode(fiend)"
     [turn]="isTurn(fiend, true)"
     (click)="select(fiend)"
-    (onAttack)="selectUnit(fiend)"
+    (AttackClickHandler)="selectUnit(fiend)"
   ></fiend-card>
   <hr [ngStyle]="turnStyle()">
   <fiend-card
@@ -15,7 +15,7 @@
     [attackMode]="getAttackMode(fiend)"
     [turn]="isTurn(fiend, false)"
     (click)="select(fiend)"
-    (onAttack)="selectUnit(fiend)"
+    (AttackClickHandler)="selectUnit(fiend)"
   ></fiend-card>
 </div>
 <div *ngIf="history && history.length > 0">
