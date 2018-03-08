@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {GameService} from "./services/game.service";
 
 
 @Component({
@@ -8,6 +9,8 @@ import {Component} from '@angular/core';
 })
 export class AppComponent{
 
-  page = ['marketplace', 'battle'][0];
+  page = ['sandbox', 'marketplace', 'battle'][1];
+
+  constructor(private game: GameService){}
 
 }

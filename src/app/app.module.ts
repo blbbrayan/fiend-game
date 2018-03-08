@@ -8,6 +8,9 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { DiceComponent } from './dice/dice.component';
 import { BattlePageComponent } from './battle-page/battle-page.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { FiendSelectComponent } from './fiend-select/fiend-select.component';
+import { SandboxComponent } from './sandbox/sandbox.component';
+import {GameService} from "./services/game.service";
 
 
 @NgModule({
@@ -16,14 +19,16 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
     FiendCardComponent,
     DiceComponent,
     BattlePageComponent,
-    MarketplaceComponent
+    MarketplaceComponent,
+    FiendSelectComponent,
+    SandboxComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

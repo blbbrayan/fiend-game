@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {FiendGroup} from "../shared/fiend-group";
 import {Global} from "../shared/global";
 
@@ -7,21 +7,28 @@ import {Global} from "../shared/global";
   templateUrl: './fiend-card.component.html',
   styleUrls: ['./fiend-card.component.css']
 })
-export class FiendCardComponent {
+export class FiendCardComponent implements OnChanges{
 
   @Input() fiend: FiendGroup;
   @Output() onAttack: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() attackMode: boolean;
   @Input() turn: boolean = false;
   menu: boolean;
+  animation: string = 'idle';
 
   constructor(){
     setTimeout(()=>console.log(this.fiend.unit()), 1000);
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes.attackMode)
+      this.animation = this.attackMode === true ? 'attack' : 'idle';
+  }
+
   getState(){
     return {
-      attack: this.attackMode
+      attack: this.attackMode,
+      [Global.rarities[this.fiend.unit().rarity]]: true
     }
   }
 
@@ -30,7 +37,10 @@ export class FiendCardComponent {
   }
 
   getSize(unit){
-    return {['size' + unit.size]: true};
+    return {
+      ['size' + unit.size]: true,
+      [unit.name + '_' + this.animation]: true
+    };
   }
 
   getRarityLabel(){

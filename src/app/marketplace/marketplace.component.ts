@@ -24,6 +24,7 @@ export class MarketplaceComponent {
   data: Fiend[];
 
   search: Fiend[] = [];
+  animation: string = 'idle';
 
   constructor(private http: HttpClient) {
     this.addSearchItem('size', ['Huge', 'Large', 'Medium', 'Small']);
@@ -131,7 +132,10 @@ export class MarketplaceComponent {
   }
 
   getSize(unit) {
-    return {['size' + unit.size]: true};
+    return {
+      ['size' + unit.size]: true,
+      [unit.name + '_' + this.animation]: true
+    };
   }
 
   exit(){

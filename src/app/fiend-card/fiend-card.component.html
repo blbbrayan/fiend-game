@@ -2,11 +2,8 @@
   <span class="exit" (click)="menu = true"><i class="fas fa-window-maximize"></i></span>
   <span class="attack" (click)="setAttackMode()" *ngIf="turn"><i class="fas fa-gavel"></i></span>
   <div class="unit" *ngFor="let unit of fiend.squad">
-    <div class="outer-unit">
-      <div class="rarity" [ngClass]="getRarity(unit)">
-        <div class="inner-unit" [ngClass]="getSize(unit)" [ngStyle]="{'background-color': fiend.unit().color}"></div>
-      </div>
-    </div>
+    <div class="inner-unit" [ngClass]="getSize(unit)"></div>
+    <div class="rarity" [ngClass]="getRarity(unit)"></div>
     <div class="health-bar"><div class="health" [ngStyle]="getHealth(unit, fiend)"></div></div>
   </div>
   <div class="menu" *ngIf="menu">

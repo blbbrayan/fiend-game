@@ -7,12 +7,9 @@
   width: 140px;
   height: 140px;
   text-align: center;
-  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
   margin: 10px;
   padding: 10px;
   box-sizing: border-box;
-  background-color: rgba(232, 232, 232, .1);
-  border-radius: 100%;
   transition: .3s;
   cursor: pointer;
   position: relative;
@@ -25,7 +22,7 @@
 
 .card.attack{
   box-shadow: 0 8px 10px 0 rgba(0,0,0,0.3);
-  background-color: #ffa0a0;
+  background-color: #ffa0a0 !important;
 }
 
 .outer-unit {
@@ -38,8 +35,7 @@
 }
 
 .health, .health-bar{
-  height: 6px;
-  border-radius: 12px;
+  height: 4px;
 }
 
 .health{
@@ -49,7 +45,7 @@
 .health-bar{
   background: darkgrey;
   width: 28px;
-  margin: -3px auto 0;
+  margin: 0 auto;
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.3);
 }
 
@@ -58,32 +54,42 @@
 }
 
 .rarity{
-  border: 4px solid;
-  border-radius: 100%;
+  border: 2px solid;
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
+  transform: rotateX(50deg);
+  margin: -22px auto 0;
 }
 
 .inner-unit{
-  border-radius: 100%;
+  background-size: 120% 120%;
+  background-position: center;
+  height: 30px;
+  z-index: 2;
+  position: relative;
 }
 
 .size1{
+  margin-top: 5px;
   width: 100px;
   height: 100px;
 }
 
 .size2{
-  width: 42px;
-  height: 42px;
+  margin-top: 20px;
+  width: 58px;
+  height: 58px;
 }
 
 .size3{
-  width: 38px;
-  height: 38px;
+  width: 54px;
+  height: 54px;
 }
 
 .size4{
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
 }
 
 .name{
@@ -93,31 +99,28 @@
   display: inline-block;
 }
 
-.card .common{
+.rarity.common{
   border-color: grey;
 }
 
-.card .uncommon{
+.rarity.uncommon{
   border-color: brown;
+  background-color: rgba(165, 42, 42, .05);
 }
 
-.card .rare{
+.rarity.rare{
   border-color: royalblue;
+  background-color: rgba(65, 105, 225, .1);
 }
 
-.card .epic{
+.rarity.epic{
   border-color: mediumpurple;
+  background-color: rgba(147, 112, 219, .15);
 }
 
-.card .legendary{
+.rarity.legendary{
   border-color: darkorange;
-}
-
-.card.attack .outer-unit{
-  animation: shake 1.2s cubic-bezier(.36,.07,.19,.97) both infinite;
-  transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  perspective: 1000px;
+  background-color: rgba(255, 140, 0, 0.2);
 }
 
 .card.attack .outer-unit {
@@ -126,14 +129,15 @@
 
 .menu{
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -2px;
+  left: -2px;
   width: 140px;
   height: 165px;
   background-color: white;
   box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
   border: 1px solid rgba(0,0,0,0.3);
   animation: menu-open .3s;
+  z-index: 3;
 }
 
 .menu .attack{
@@ -216,15 +220,15 @@
     border-radius: 100%;
   }
   80%{
-    top: -10px;
-    left: -10px;
+    top: -12px;
+    left: -12px;
     width: 160px;
     height: 185px;
     border-radius: 0;
   }
   100%{
-    top: 0;
-    left: 0;
+    top: -2px;
+    left: -2px;
     width: 140px;
     height: 165px;
   }

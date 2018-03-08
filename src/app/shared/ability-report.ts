@@ -3,6 +3,7 @@ import {Ability} from "./ability";
 export class AbilityReport{
 
   ability: Ability;
-  attacks: AttackReport;
+  desc: string;
+  attacks: AttackReport[];
 
 }

@@ -170,6 +170,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.3);
+  z-index: 3;
 }
 
 .search-card{
@@ -181,6 +182,7 @@
   border-radius: 7px;
   box-shadow: 0 7px 9px 0 rgba(0,0,0,0.3);
   animation: openSearchModal .4s;
+  z-index: 4;
 }
 
 @keyframes openSearchModal {
@@ -374,42 +376,55 @@
 
 /*unit stuff*/
 
-.outer-unit {
-  border-radius: 100%;
-  border: 2px solid rgba(0,0,0,0.3);
-  cursor: pointer;
-  margin: 2px 2px 0;
-  box-shadow: 0 3px 5px 0 rgba(0,0,0,0.3);
+.unit{
   display: inline-block;
 }
 
 .rarity{
-  border: 4px solid;
-  border-radius: 100%;
+  border: 2px solid;
+  width: 28px;
+  height: 28px;
+  border-radius: 100px;
+  transform: rotateX(50deg);
+  margin: -22px auto 0;
 }
 
 .inner-unit{
-  border-radius: 100%;
+  background-size: 120% 120%;
+  background-position: center;
+  height: 30px;
+  z-index: 2;
+  position: relative;
+  animation-delay: 2s;
 }
 
 .size1{
+  margin-top: 5px;
   width: 100px;
   height: 100px;
 }
 
 .size2{
-  width: 42px;
-  height: 42px;
+  margin-top: 20px;
+  width: 58px;
+  height: 58px;
 }
 
 .size3{
-  width: 38px;
-  height: 38px;
+  width: 54px;
+  height: 54px;
 }
 
 .size4{
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
+}
+
+.name{
+  width: 140px;
+  text-align: center;
+  padding-left: 10px;
+  display: inline-block;
 }
 
 .rarity.common{
@@ -418,16 +433,20 @@
 
 .rarity.uncommon{
   border-color: brown;
+  background-color: rgba(165, 42, 42, .05);
 }
 
 .rarity.rare{
   border-color: royalblue;
+  background-color: rgba(65, 105, 225, .1);
 }
 
 .rarity.epic{
   border-color: mediumpurple;
+  background-color: rgba(147, 112, 219, .15);
 }
 
 .rarity.legendary{
   border-color: darkorange;
+  background-color: rgba(255, 140, 0, 0.2);
 }

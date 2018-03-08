@@ -1,114 +1,42 @@
 [
   {
-    "name": "ogre",
-    "ability": null,
-    "size": 1,
-    "tags": [],
-    "color": "#eadcce"
-  },
-  {
-    "name": "wraith",
-    "ability": null,
-    "size": 2,
-    "tags": [],
-    "color": "#e8e8e8"
-  },
-  {
-    "name": "wizard",
-    "ability": "fireball",
-    "size": 3,
-    "tags": [],
-    "color": "#8686e6"
-  },
-  {
-    "name": "stitchlings",
-    "ability": null,
+    "name": "skeleton",
+    "ability": "undying",
     "size": 4,
     "tags": [],
-    "color": "#796756"
-  },
-  {
-    "name": "earth golem",
-    "ability": null,
-    "size": 1,
-    "tags": [],
-    "color": "#697f5a"
-  },
-  {
-    "name": "barbarians",
-    "ability": null,
-    "size": 2,
-    "tags": [],
-    "color": "#b1421a"
-  },
-  {
-    "name": "korpse hound",
-    "ability": null,
-    "size": 3,
-    "tags": [],
-    "color": "#947f7f"
-  },
-  {
-    "name": "goblins",
-    "ability": null,
-    "size": 4,
-    "tags": [],
-    "color": "#8eaf77"
-  },
-  {
-    "name": "dragon",
-    "ability": null,
-    "size": 1,
-    "tags": [],
-    "color": "#bd5a5a"
-  },
-  {
-    "name": "valkyrie",
-    "ability": null,
-    "size": 2,
-    "tags": [],
-    "color": "#f1963d"
-  },
-  {
-    "name": "oozeling",
-    "ability": null,
-    "size": 3,
-    "tags": [],
-    "color": "#71a95e"
-  },
-  {
-    "name": "imp",
-    "ability": null,
-    "size": 4,
-    "tags": [],
-    "color": "#4c2929"
-  },
-  {
-    "name": "treant",
-    "ability": null,
-    "size": 1,
-    "tags": [],
-    "color": "#63431e"
-  },
-  {
-    "name": "druid",
-    "ability": null,
-    "size": 2,
-    "tags": [],
-    "color": "#7daf8e"
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
   },
   {
     "name": "archer",
     "ability": null,
     "size": 3,
     "tags": [],
-    "color": "#ceb598"
+    "animations": {
+      "idle": 12,
+      "attack": 15
+    }
   },
   {
-    "name": "sapkinling",
+    "name": "barbarian",
     "ability": null,
-    "size": 4,
+    "size": 2,
     "tags": [],
-    "color": "#78ce67"
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
+  },
+  {
+    "name": "giant",
+    "ability": null,
+    "size": 1,
+    "tags": [],
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
   }
 ]

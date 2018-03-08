@@ -1,2 +1,4 @@
 <battle-page *ngIf="page==='battle'"></battle-page>
 <marketplace *ngIf="page==='marketplace'" (onBattle)="page = 'battle'"></marketplace>
+<sandbox *ngIf="page === 'sandbox'"></sandbox>
+<style id="animation-styles" [innerHtml]="style"></style>

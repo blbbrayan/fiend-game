@@ -12,15 +12,17 @@ export class Fiend{
   rarity: number; // 1:common 2:uncommon 3:rare 4:epic 5:legendary
   level: number; // 1 2 3 4 5
   color: string;
+  animations: {idle:number, attack:number};
 
   ability: Ability;
 
-  constructor(name, rarity, level, attr, size, color, ability?) {
+  constructor(name, rarity, level, attr, size, animations, color?, ability?) {
     this.name = name;
     this.rarity = rarity;
     this.level = level;
     this.attribute = attr;
     this.size = size;
+    this.animations = animations;
     this.color = color;
 
     this.health = (rarity + 6 - size) * level * 10; // 30 - 100

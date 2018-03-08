@@ -3,10 +3,9 @@
 <div class="center">
   <div class="fiend-card" *ngFor="let unit of search">
     <div class="preview">
-      <div class="outer-unit">
-        <div class="rarity" [ngClass]="getRarity(unit)">
-          <div class="inner-unit" [ngClass]="getSize(unit)" [ngStyle]="{'background-color': unit.color}"></div>
-        </div>
+      <div class="unit">
+        <div class="inner-unit" [ngClass]="getSize(unit)"></div>
+        <div class="rarity" [ngClass]="getRarity(unit)"></div>
       </div>
     </div>
     <div class="info">
