@@ -16,6 +16,8 @@ import {AbilityService} from "../services/ability.service";
 })
 export class BattlePageComponent {
 
+  reportModal: boolean = false;
+
   units: Unit[];
 
   unitGenerator: UnitGenerator = new UnitGenerator();

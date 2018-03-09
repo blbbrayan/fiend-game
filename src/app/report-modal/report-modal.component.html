@@ -1,25 +1,34 @@
-<div class="modal" *ngIf="report">
+<div class="modal" *ngIf="report() && active">
   <div class="card">
+    <span class="exit" (click)="onExit.emit(true)"><i class="fas fa-times"></i></span>
+    <div class="nav">
+      <span (click)="moveIndex(-1)"><i class="fas fa-angle-left"></i></span>
+      <span>{{index}}</span>
+      <span (click)="moveIndex(1)">{{index !== history.length-1?index+1:''}} <i class="fas fa-angle-right"></i> {{history.length-1}}</span>
+    </div>
     <div class="tabs">
       <span (click)="tab = 'attacks'">Attacks {{attacks().length}}</span>
-      <span (click)="tab = 'abilities'">Abilities {{abilities().length}}</span>
+      <span (click)="tab = 'ability'">Abilities {{abilities().length}}</span>
     </div>
+    <div class="tab-container"><span class="tab-item" [ngStyle]="tabStyle()"></span></div>
 
-    <div class="ability-menu" *ngIf="abilities">
-      <div *ngFor="let abilityReport of abilities()">
-        <div>{{abilityReport.ability.name}}</div>
-        <div>{{abilityReport.desc}}</div>
-      </div>
-    </div>
+    <!--<div class="ability-menu" *ngIf="tab == 'ability' && abilities().length > 0">-->
+      <!--<div *ngFor="let abilityReport of abilities()">-->
+        <!--<div>{{abilityReport.ability?.name}}</div>-->
+        <!--<div>{{abilityReport.desc}}</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<h1 class="disclaimer" *ngIf="tab == 'ability' && abilities().length == 0">No Abilities</h1>-->
 
-    <div class="attack-menu" *ngIf="attacks">
-      <div *ngFor="let attackReport of attacks()">
-        <div>Attacker: {{attackReport.caster}}</div>
-        <div>Target: {{attackReport.target}}</div>
-        <div>Roll: {{attackReport.roll}}</div>
-        <div>Hit: {{attackReport.hit}}</div>
-        <div>Damage: {{attackReport.damage}}</div>
-        <div>Kill: {{attackReport.enemyKilled}}</div>
+    <div class="attack-menu" *ngIf="tab == 'attacks'">
+      <h1 class="disclaimer">{{kills()}} Kill{{kills() > 1 || kills() === 0 ? 's' : ''}}</h1>
+      <h1 class="disclaimer">{{hits()}} Hit{{hits() > 1 || hits() === 0 ? 's' : ''}}</h1>
+      <h1 class="disclaimer">{{damage()}} Damage</h1>
+      <div class="stat" *ngFor="let attackReport of attacks()">
+        <div class="name">{{attackReport.caster.name}} <i class="fas fa-gavel"></i> {{attackReport.target.name}}</div>
+        <div class="roll" [ngStyle]="{'color': attackReport.hit ? 'green' : 'red'}">{{attackReport.roll}}</div>
+        <div>{{attackReport.damage}} Damage</div>
+        <div>{{attackReport.enemyKilled?'Kill!':' '}}</div>
       </div>
     </div>
 

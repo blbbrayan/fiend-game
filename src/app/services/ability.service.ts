@@ -74,7 +74,7 @@ export class AbilityService {
         caster.health = 1;
         caster.ability = null;
         let report = new AbilityReport();
-        report.desc = 'Skeleton activates undying! Skeleton\'s health is set to 1 instead of dying.';
+        report.desc = 'Skeleton activates undying. Skeleton\'s health is set to 1 instead of dying.';
         return report;
       }, 'onDeath this unit revives with 1 health.');
       case 'precision': return new Ability('precision', 'onMiss', {acc: .9, damage:.9}, (caster, target)=>{
@@ -93,17 +93,27 @@ export class AbilityService {
           report.attacks.push(attackReport);
         }
 
-        report.desc = 'Archer missed! Archer activates Precision! Archer fires one more time.';
+        report.desc = 'Archer missed. Archer activates Precision. Archer fires one more time.';
         return report;
       }, 'onMiss attack again at half accuracy');
-      case 'rage': return new Ability('rage', 'onHit', {health: 1.4, damage:.6}, caster=>
-        caster.damage *= 1.1
+      case 'rage': return new Ability('rage', 'onHit', {health: 1.4, damage:.6}, caster=> {
+          caster.damage *= 1.1;
+
+          let report = new AbilityReport();
+
+          report.desc = 'Upon Barbarians being attacked, they gain 10% damage.';
+          return report;
+        }
       ,'onHit gain 10% damage permanently');
       case 'gentle-giant': return new Ability('gentle-giant', 'onDeath', {damage: 1.3, health:.9}, (caster, target, allies: FiendGroup, enemies) =>{
         allies.squad.forEach(fiend=>{
           if(fiend !== caster)
-            fiend.health += caster.level * caster.rarity
-        })
+            fiend.health += caster.level * caster.rarity;
+        });
+        let report = new AbilityReport();
+
+        report.desc = 'Upon dying, the Giant gifts its allies a health boost.';
+        return report;
       }, 'onDeath all allies gain a small boost of health');
     }
   }
