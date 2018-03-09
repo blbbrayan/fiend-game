@@ -7,6 +7,7 @@ import {Unit} from "../shared/unit";
 import {HttpClient} from "@angular/common/http";
 import {Global} from "../shared/global";
 import {SquadReport} from "../shared/squad-report";
+import {AbilityService} from "../services/ability.service";
 
 @Component({
   selector: 'battle-page',
@@ -31,7 +32,7 @@ export class BattlePageComponent {
   history: SquadReport[] = [];
   combos: number = 0;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private abilityService: AbilityService) {
     (this.http.get("assets/units.json"))
       .subscribe((units: Unit[]) => {
         this.units = units;
@@ -41,10 +42,10 @@ export class BattlePageComponent {
         for (let i = 0; i < 4; i++) {
           unit = this.units[Global.random(this.units.length - 1)];
           // this.units.splice(this.units.indexOf(unit), 1);
-          this.teamOne.push(new FiendGroup(this.unitGenerator.generate(unit, 5, 5)));
+          this.teamOne.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService, 5, 5)));
           unit = this.units[Global.random(this.units.length - 1)];
           // this.units.splice(this.units.indexOf(unit), 1);
-          this.teamTwo.push(new FiendGroup(this.unitGenerator.generate(unit, 5, 5)));
+          this.teamTwo.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService, 5, 5)));
         }
       });
   }
@@ -78,7 +79,7 @@ export class BattlePageComponent {
 
   select(unit) {
     if (this.attackMode && this.selectedUnit && this.selectedUnit !== unit && (this.getUnitTeam(unit) !== this.getUnitTeam(this.selectedUnit))) {
-      this.history.push(this.selectedUnit.attack(unit));
+      this.history.push(this.abilityService.attackFiendGroup(this.selectedUnit, unit));
       this.attackMode = false;
       this.selectedUnit = undefined;
       this.endTurn();

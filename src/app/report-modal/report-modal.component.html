@@ -1,0 +1,27 @@
+<div class="modal" *ngIf="report">
+  <div class="card">
+    <div class="tabs">
+      <span (click)="tab = 'attacks'">Attacks {{attacks().length}}</span>
+      <span (click)="tab = 'abilities'">Abilities {{abilities().length}}</span>
+    </div>
+
+    <div class="ability-menu" *ngIf="abilities">
+      <div *ngFor="let abilityReport of abilities()">
+        <div>{{abilityReport.ability.name}}</div>
+        <div>{{abilityReport.desc}}</div>
+      </div>
+    </div>
+
+    <div class="attack-menu" *ngIf="attacks">
+      <div *ngFor="let attackReport of attacks()">
+        <div>Attacker: {{attackReport.caster}}</div>
+        <div>Target: {{attackReport.target}}</div>
+        <div>Roll: {{attackReport.roll}}</div>
+        <div>Hit: {{attackReport.hit}}</div>
+        <div>Damage: {{attackReport.damage}}</div>
+        <div>Kill: {{attackReport.enemyKilled}}</div>
+      </div>
+    </div>
+
+  </div>
+</div>

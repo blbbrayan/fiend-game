@@ -18,29 +18,6 @@ export class FiendGroup{
     this.baseAccuracy = this.unit().accuracy;
   }
 
-  attack(group) {
-    let report = new SquadReport();
-
-    this.squad.forEach(unit => {
-      const enemy = group.squad.filter(unit => unit.health > 0)[0];
-      let attackReport: AttackReport;
-      if (enemy) {
-        attackReport = unit.attack(enemy);
-        report.reports.push(attackReport);
-        if (attackReport.hit)
-          report.hits++;
-      }
-    });
-
-    if (group.squad.filter(unit => unit.health > 0).length <= 0)
-      report.enemyKilled = true;
-
-    this.update();
-    group.update();
-
-    return report;
-  }
-
   update(){
     this.squad = this.squad.filter(u=>u.health>0);
   }

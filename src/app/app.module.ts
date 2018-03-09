@@ -11,6 +11,8 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { FiendSelectComponent } from './fiend-select/fiend-select.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
 import {GameService} from "./services/game.service";
+import {AbilityService} from "./services/ability.service";
+import { ReportModalComponent } from './report-modal/report-modal.component';
 
 
 @NgModule({
@@ -22,13 +24,14 @@ import {GameService} from "./services/game.service";
     MarketplaceComponent,
     FiendSelectComponent,
     SandboxComponent,
+    ReportModalComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule
   ],
-  providers: [HttpClient, GameService],
+  providers: [HttpClient, GameService, AbilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

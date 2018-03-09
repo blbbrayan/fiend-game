@@ -4,6 +4,7 @@ import {Fiend} from "../shared/fiend";
 import {UnitGenerator} from "../shared/unit-generator";
 import {Unit} from "../shared/unit";
 import {HttpClient} from "@angular/common/http";
+import {AbilityService} from "../services/ability.service";
 
 @Component({
   selector: 'marketplace',
@@ -26,7 +27,7 @@ export class MarketplaceComponent {
   search: Fiend[] = [];
   animation: string = 'idle';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, abilityService: AbilityService) {
     this.addSearchItem('size', ['Huge', 'Large', 'Medium', 'Small']);
     this.addSearchItem('rarity', ['C', 'U', 'R', 'E', 'L']);
     this.addSearchItem('level', [1, 2, 3, 4, 5]);
@@ -36,7 +37,7 @@ export class MarketplaceComponent {
 
     (this.http.get("assets/units.json"))
       .subscribe((units: Unit[]) => {
-        this.data = this.unitGenerator.generateAll(units);
+        this.data = this.unitGenerator.generateAll(units, abilityService);
         let time = 0;
         let listener = setInterval(()=>{
           time+=99;

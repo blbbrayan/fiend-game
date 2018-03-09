@@ -1,4 +1,4 @@
-.archer_idle{animation: archer-idle 1.2s infinite}
+.archer_idle{animation: archer-idle 1.2s infinite;}
 @keyframes archer-idle {
   0%{ background-image: url('./idle/0.png') }
   9%{ background-image: url('./idle/1.png') }

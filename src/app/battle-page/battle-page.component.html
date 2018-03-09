@@ -21,3 +21,5 @@
 <div *ngIf="history && history.length > 0">
   <dice *ngFor="let report of history[history.length-1].reports" [roll]="report.roll" [hit]="report.hit"></dice>
 </div>
+
+<report-modal [report]="history[history.length-1]"></report-modal>

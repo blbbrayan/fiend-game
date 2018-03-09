@@ -1,7 +1,8 @@
 import {Fiend} from "./fiend";
 import {Global} from "./global";
 import {Unit} from "./unit";
-import {Abilities} from "./abilities";
+import {Ability} from "./ability";
+import {AbilityService} from "../services/ability.service";
 
 export class UnitGenerator {
 
@@ -32,29 +33,25 @@ export class UnitGenerator {
     this.combos = this.rarities.length * this.levels.length * this.attributes.length;
   }
 
-  generate(unit: Unit, rarityI?: number, levelI?: number, attributeI?: string) {
+  generate(unit: Unit, abilityService: AbilityService, rarityI?: number, levelI?: number, attributeI?: string) {
     let rarity = rarityI || this.rarities[Global.random(this.rarities.length - 1)];
     let level = levelI || this.levels[Global.random(this.levels.length - 1)];
     let attribute = attributeI || this.attributes[Global.random(this.attributes.length - 1)];
+    let ability = abilityService.getAbility(unit.ability);
 
-    let ability;
-    if (unit.ability)
-      ability = Abilities.load(unit.ability);
-
-    let fiend = new Fiend(unit.name, rarity, level, attribute, unit.size, unit.color, ability);
-    fiend.color = unit.color;
+    let fiend = new Fiend(unit.name, rarity, level, attribute, unit.size, unit.animations, ability);
 
     return fiend;
   }
 
-  generateAll(units: Unit[]) {
+  generateAll(units: Unit[], abilityService: AbilityService) {
     let unitList: Fiend[] = [];
     units.forEach(unit => {
-        let ability = unit.ability ? Abilities.load(unit.ability) : undefined;
+        let ability = abilityService.getAbility(unit.ability);
         this.rarities.forEach(rarity =>
           this.levels.forEach(level =>
             this.attributes.forEach(attribute =>
-              unitList.push(new Fiend(unit.name, rarity, level, attribute, unit.size, unit.color, ability))
+              unitList.push(new Fiend(unit.name, rarity, level, attribute, unit.size, unit.animations, ability))
             )
           )
         );

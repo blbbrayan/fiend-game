@@ -16,12 +16,10 @@ export class FiendCardComponent implements OnChanges{
   menu: boolean;
   animation: string = 'idle';
 
-  constructor(){
-    setTimeout(()=>console.log(this.fiend.unit()), 1000);
-  }
+  constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes.attackMode)
+    if(changes['attackMode'])
       this.animation = this.attackMode === true ? 'attack' : 'idle';
   }
 

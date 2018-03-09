@@ -8,11 +8,12 @@ export class Ability{
   fn: any;
   stats: any;
 
-  constructor(name, event, stats, fn){
+  constructor(name, event, stats, fn, desc){
     this.name = name;
     this.event = event;
     this.stats = stats;
     this.fn = fn;
+    this.desc = desc;
   }
 
   run(caster?: FiendGroup, target?: FiendGroup, allies?: FiendGroup[], enemies?: FiendGroup[]){

@@ -11,20 +11,24 @@ export class Fiend{
   attribute: string; // assassin healthy precise
   rarity: number; // 1:common 2:uncommon 3:rare 4:epic 5:legendary
   level: number; // 1 2 3 4 5
-  color: string;
   animations: {idle:number, attack:number};
 
   ability: Ability;
 
-  constructor(name, rarity, level, attr, size, animations, color?, ability?) {
+  constructor(name, rarity, level, attr, size, animations, ability?) {
     this.name = name;
     this.rarity = rarity;
     this.level = level;
     this.attribute = attr;
     this.size = size;
     this.animations = animations;
-    this.color = color;
+    this.ability = ability;
 
+    this.update();
+  }
+
+  update(){
+    const rarity = this.rarity, size = this.size, level = this.level, ability = this.ability;
     this.health = (rarity + 6 - size) * level * 10; // 30 - 100
     this.damage = Math.ceil((rarity + 6 - size) / 2) * level * 10; // 20 - 50
     this.accuracy = (.4 + ((5 - size) / 4 * .2) + (rarity / 5 * .1)) * 100;
@@ -50,25 +54,8 @@ export class Fiend{
     this.accuracy = Math.floor(this.accuracy);
   }
 
-  attack(enemy: Fiend) {
-    const roll = Math.ceil(Math.random() * 100);
-    const hit = this.accuracy >= roll;
-
-    let report = new AttackReport(roll, hit);
-
-    if (hit) {
-      enemy.health -= this.damage;
-      report.damage = this.damage;
-      report.enemyKilled = enemy.health <= 0;
-    }
-
-    return report;
-  }
-
   clone(){
-    let c = Object.assign({}, this);
-    c.attack = this.attack.bind(c);
-    return c;
+    return Object.assign({}, this);
   }
 
   toString(){

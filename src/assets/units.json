@@ -11,7 +11,7 @@
   },
   {
     "name": "archer",
-    "ability": null,
+    "ability": "precision",
     "size": 3,
     "tags": [],
     "animations": {
@@ -21,7 +21,7 @@
   },
   {
     "name": "barbarian",
-    "ability": null,
+    "ability": "rage",
     "size": 2,
     "tags": [],
     "animations": {
@@ -31,7 +31,7 @@
   },
   {
     "name": "giant",
-    "ability": null,
+    "ability": "gentle-giant",
     "size": 1,
     "tags": [],
     "animations": {
