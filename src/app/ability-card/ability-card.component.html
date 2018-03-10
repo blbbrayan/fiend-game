@@ -1,0 +1,7 @@
+<div class="report" *ngIf="abilityReport && active" [ngStyle]="getLocation()" (click)="active = false" [ngClass]="{'team-one': abilityReport.caster.team,'team-two': !abilityReport.caster.team}">
+  <div class="ability-stat">
+    <div>{{abilityReport.caster?.name}} <i class="fas fa-gavel" *ngIf="abilityReport.target"></i> {{abilityReport.target?.name}}</div>
+    <div>{{abilityReport.ability?.name}}</div>
+    <div>{{abilityReport.desc}}</div>
+  </div>
+</div>

@@ -12,21 +12,16 @@ export class ReportModalComponent implements OnChanges {
   @Input() history: SquadReport[];
   @Input() active: boolean = true;
   @Output() onExit: EventEmitter<boolean> = new EventEmitter<boolean>();
-  tab: string = 'ability';
   index: number = 0;
-
-  constructor() {}
+  innerHeight: number;
 
   ngOnChanges(changes:SimpleChanges):void {
     this.index = this.history.length-1;
+    this.innerHeight = document.body.getBoundingClientRect().height;
   }
 
   report(){
     return this.history[this.index];
-  }
-
-  attacks(){
-    return this.report().reports;
   }
 
   kills(){
@@ -41,26 +36,49 @@ export class ReportModalComponent implements OnChanges {
     return hits;
   }
 
+  isAbility(report){
+    return report.ability;
+  }
+
   damage(){
     let damage = 0;
     this.attacks().forEach(report=>damage+=report.damage?report.damage:0);
     return damage;
   }
 
+  reports(){
+    let reports = [];
+    if(this.report())
+      this.report().reports.forEach(attackReport =>{
+        reports.push(attackReport);
+        if(attackReport.abilityReports)
+          attackReport.abilityReports.forEach(abilityReport=>{
+            reports.push(abilityReport);
+            if(abilityReport.attacks)
+              abilityReport.attacks.forEach(a=>reports.push(a));
+          });
+      });
+    return reports;
+  }
+
+  attacks(){
+    return this.report().reports;
+  }
+
   abilities(): AbilityReport[]{
     let abilityReports: AbilityReport[] = [];
     if(this.report())
-      this.report().reports.forEach(attackReport =>abilityReports = abilityReports.concat(attackReport.abilityReports));
+      this.report().reports.forEach(attackReport =>{
+        if(attackReport.abilityReports)
+          attackReport.abilityReports.forEach(e=>abilityReports.push(e));
+      });
     return abilityReports;
-  }
-
-  tabStyle(){
-    return{'margin-left': this.tab === 'ability' ? '50%' : '0'}
   }
 
   moveIndex(val){
     this.index += val;
     if(this.index >= this.history.length) this.index = 0;
     if(this.index < 0) this.index = this.history.length-1;
+    this.innerHeight = document.body.getBoundingClientRect().height;
   }
 }

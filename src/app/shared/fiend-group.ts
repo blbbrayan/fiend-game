@@ -8,14 +8,16 @@ export class FiendGroup{
   baseHealth: number;
   baseDamage: number;
   baseAccuracy: number;
+  team: boolean;
 
-  constructor(unit: Fiend) {
+  constructor(unit: Fiend, team: boolean) {
     this.squad = [];
     for (let i = 0; i < unit.size; i++)
-      this.squad.push(unit.clone());
+      this.squad.push(unit.clone(team));
     this.baseHealth = this.unit().health;
     this.baseDamage = this.unit().damage;
     this.baseAccuracy = this.unit().accuracy;
+    this.team = team;
   }
 
   update(){

@@ -9,6 +9,7 @@ export class AttackReport{
   damage: number;
   enemyKilled: boolean;
   abilityReports: AbilityReport[];
+  time: number;
 
   constructor(caster: Fiend, target: Fiend, roll?, hit?){
     this.caster = caster;
@@ -18,6 +19,7 @@ export class AttackReport{
     this.enemyKilled = false;
     this.damage = 0;
     this.abilityReports = [];
+    this.time = new Date().getTime();
   }
 
   toString(){

@@ -15,7 +15,7 @@ export class SandboxComponent {
 
   constructor(private game: GameService) {
     let obj = {fiend: new Fiend('archer', 5, 1, 'assassin', 3, {"idle": 12, "attack": 15})};
-    this.fiendGroup = new FiendGroup(obj.fiend);
+    this.fiendGroup = new FiendGroup(obj.fiend, true);
     delete obj.fiend;
     game.loadAnimation(this.fiendGroup);
   }

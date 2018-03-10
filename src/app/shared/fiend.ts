@@ -12,6 +12,7 @@ export class Fiend{
   rarity: number; // 1:common 2:uncommon 3:rare 4:epic 5:legendary
   level: number; // 1 2 3 4 5
   animations: {idle:number, attack:number};
+  team: boolean;
 
   ability: Ability;
 
@@ -54,8 +55,8 @@ export class Fiend{
     this.accuracy = Math.floor(this.accuracy);
   }
 
-  clone(){
-    return Object.assign({}, this);
+  clone(team){
+    return Object.assign({team: team}, this);
   }
 
   toString(){

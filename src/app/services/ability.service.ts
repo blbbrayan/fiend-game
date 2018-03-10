@@ -19,9 +19,10 @@ export class AbilityService {
   };
 
   abilityEvent(event: string, attackReport: AttackReport, caster, target, allies, enemies){
-    console.log('ability event', event, caster.ability);
-    if(caster.ability && caster.ability.event === event)
+    if(caster.ability && caster.ability.event === event) {
+      console.log('ability event', event, caster.ability);
       attackReport.abilityReports.push(caster.ability.run(caster, target, allies, enemies));
+    }
   }
 
   attackFiend(caster: Fiend, target: Fiend, allies: FiendGroup, enemies: FiendGroup){
@@ -73,33 +74,31 @@ export class AbilityService {
       case 'undying': return new Ability('undying', 'onDeath', {health:.8,damage:.8}, caster => {
         caster.health = 1;
         caster.ability = null;
-        let report = new AbilityReport();
+        let report = new AbilityReport(caster, null, this);
         report.desc = 'Skeleton activates undying. Skeleton\'s health is set to 1 instead of dying.';
         return report;
       }, 'onDeath this unit revives with 1 health.');
       case 'precision': return new Ability('precision', 'onMiss', {acc: .9, damage:.9}, (caster, target)=>{
-        console.log('precision ability ran');
         const roll = Math.ceil(Math.random() * 100);
         const hit = caster.accuracy / 2 >= roll;
 
-        let report = new AbilityReport();
+        let report = new AbilityReport(caster, target, this);
         let attackReport = new AttackReport(caster, target, roll, hit);
 
         if (hit) {
           target.health -= caster.damage;
           attackReport.damage = caster.damage;
           attackReport.enemyKilled = target.health <= 0;
-          report.attacks = [];
-          report.attacks.push(attackReport);
+          report.attacks = [attackReport];
         }
 
         report.desc = 'Archer missed. Archer activates Precision. Archer fires one more time.';
         return report;
       }, 'onMiss attack again at half accuracy');
-      case 'rage': return new Ability('rage', 'onHit', {health: 1.4, damage:.6}, caster=> {
+      case 'rage': return new Ability('rage', 'onHit', {health: 1.4, damage:.6}, (caster, target)=> {
           caster.damage *= 1.1;
 
-          let report = new AbilityReport();
+          let report = new AbilityReport(caster, target, this);
 
           report.desc = 'Upon Barbarians being attacked, they gain 10% damage.';
           return report;
@@ -110,7 +109,7 @@ export class AbilityService {
           if(fiend !== caster)
             fiend.health += caster.level * caster.rarity;
         });
-        let report = new AbilityReport();
+        let report = new AbilityReport(caster, target, this);
 
         report.desc = 'Upon dying, the Giant gifts its allies a health boost.';
         return report;

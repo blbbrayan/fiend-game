@@ -1,4 +1,5 @@
 import {FiendGroup} from "./fiend-group";
+import {AbilityReport} from "./ability-report";
 
 export class Ability{
 
@@ -16,8 +17,8 @@ export class Ability{
     this.desc = desc;
   }
 
-  run(caster?: FiendGroup, target?: FiendGroup, allies?: FiendGroup[], enemies?: FiendGroup[]){
-    this.fn(caster, target, allies, enemies);
+  run(caster?: FiendGroup, target?: FiendGroup, allies?: FiendGroup[], enemies?: FiendGroup[]): AbilityReport{
+    return this.fn(caster, target, allies, enemies);
   }
 
 }

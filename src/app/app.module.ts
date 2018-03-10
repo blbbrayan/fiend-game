@@ -13,6 +13,7 @@ import { SandboxComponent } from './sandbox/sandbox.component';
 import {GameService} from "./services/game.service";
 import {AbilityService} from "./services/ability.service";
 import { ReportModalComponent } from './report-modal/report-modal.component';
+import { AbilityCardComponent } from './ability-card/ability-card.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ReportModalComponent } from './report-modal/report-modal.component';
     FiendSelectComponent,
     SandboxComponent,
     ReportModalComponent,
+    AbilityCardComponent,
   ],
   imports: [
     BrowserModule,

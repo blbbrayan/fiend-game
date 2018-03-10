@@ -1,4 +1,5 @@
 <span
   *ngIf="hit !== undefined && roll !== undefined && active"
   [ngStyle]="getLocation()"
+  (click)="active = false"
 >{{roll}}</span>

@@ -1,4 +1,4 @@
-<h1 class="header">Team {{turn?'One':'Two'}}</h1>
+<h1 class="header" [ngClass]="{'team-one': turn,'team-two': !turn}">Team {{turn?'One':'Two'}}</h1>
 <button class="open-report" (click)="reportModal = true"><i class="fas fa-bell"></i></button>
 <div class="card">
   <fiend-card
@@ -19,8 +19,11 @@
     (onAttack)="selectUnit(fiend)"
   ></fiend-card>
 </div>
+
 <div *ngIf="history && history.length > 0">
   <dice *ngFor="let report of history[history.length-1].reports" [roll]="report.roll" [hit]="report.hit"></dice>
 </div>
+
+<ability-card *ngFor="let abilityReport of abilities()" [abilityReport]="abilityReport"></ability-card>
 
 <report-modal [history]="history" [active]="reportModal" *ngIf="history?.length > 0" (onExit)="reportModal = false"></report-modal>
