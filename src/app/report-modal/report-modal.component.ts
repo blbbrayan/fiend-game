@@ -46,7 +46,7 @@ export class ReportModalComponent implements OnChanges {
     return damage;
   }
 
-  reports(){
+  brayreports(){
     let reports = [];
     if(this.report())
       this.report().reports.forEach(attackReport =>{
@@ -59,6 +59,19 @@ export class ReportModalComponent implements OnChanges {
           });
       });
     return reports;
+  }
+
+  // dads report chaining arrays
+  reports() {
+    return this.report().reports.filter(atr => {
+      return atr['abilityReports'] !== undefined;
+    }).map(atr => {
+      return atr['abilityReports'];
+    }).filter(abr => {
+      return abr['attacks'] !== undefined;
+    }).map(abr => {
+      return abr['attacks'];
+    });
   }
 
   attacks(){
