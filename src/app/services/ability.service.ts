@@ -96,10 +96,10 @@ export class AbilityService {
 
           let report = new AbilityReport(caster, target, this);
 
-          report.desc = 'Upon Barbarians being attacked, they gain 10% damage.' + ` (total ${caster.damage} damage)`;
+          report.desc = `Upon Barbarians being attacked, they gain ${~~((caster.level + caster.rarity) / 2)} damage.` + ` (total ${caster.damage} damage)`;
           return report;
         }
-      ,'onHit gain 10% damage permanently');
+      ,'onHit gain increased damage permanently');
       case 'gentle-giant': return new Ability('gentle-giant', 'onDeath', {damage: 1.4, health:.8}, (caster, target, allies: FiendGroup, enemies, team: FiendGroup[]) =>{
         console.log('gentle-giant being run', team);
         team.forEach(allySquad=>allySquad.squad.forEach(fiend=>{
