@@ -1,8 +1,7 @@
 <div class="card" [ngClass]="getState()" *ngIf="fiend.unit()">
-  <span class="exit" (click)="menu = true"><i class="fas fa-window-maximize"></i></span>
-  <span class="attack" (click)="setAttackMode()" *ngIf="turn"><i class="fas fa-gavel"></i></span>
-  <div class="unit" *ngFor="let unit of fiend.squad">
-    <div class="inner-unit" [ngClass]="getSize(unit)"></div>
+  <span class="exit" *ngIf="!menu" (click)="menu = true" [ngClass]="getRarity()"><i class="fas fa-window-maximize"></i></span>
+  <div class="unit" *ngFor="let unit of fiend.squad" (click)="setAttackMode()">
+    <div class="inner-unit" [ngClass]="getSize(unit)" [ngStyle]="{'transform':turn?'scale(1.1, 1.1)':'scale(1,1)'}"></div>
     <div class="rarity" [ngClass]="getRarity(unit)"></div>
     <div class="health-bar"><div class="health" [ngStyle]="getHealth(unit, fiend)"></div></div>
   </div>

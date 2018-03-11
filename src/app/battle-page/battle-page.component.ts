@@ -45,10 +45,10 @@ export class BattlePageComponent implements OnInit, OnDestroy {
         for (let i = 0; i < 4; i++) {
           unit = this.units[Global.random(this.units.length - 1)];
           // this.units.splice(this.units.indexOf(unit), 1);
-          this.teamOne.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService, 5, 5), true));
+          this.teamOne.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService), true));
           unit = this.units[Global.random(this.units.length - 1)];
           // this.units.splice(this.units.indexOf(unit), 1);
-          this.teamTwo.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService, 5, 5), false));
+          this.teamTwo.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService), false));
         }
       });
   }

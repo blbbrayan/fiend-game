@@ -45,12 +45,13 @@ export class FiendCardComponent implements OnChanges{
   getState(){
     return {
       attack: this.attackMode,
-      [Global.rarities[this.fiend.unit().rarity]]: true
+      [Global.rarities[this.fiend.unit().rarity]]: true,
+      turn: this.turn
     }
   }
 
-  getRarity(unit){
-    return {[Global.rarities[unit.rarity]]: true};
+  getRarity(unit?){
+    return {[Global.rarities[this.fiend.unit().rarity]]: true};
   }
 
   getSize(unit){
@@ -69,8 +70,10 @@ export class FiendCardComponent implements OnChanges{
   }
 
   setAttackMode(){
-    this.menu = false;
-    this.onAttack.emit(true);
+    if(this.turn) {
+      this.menu = false;
+      this.onAttack.emit(true);
+    }
   }
 
     getFiend(){

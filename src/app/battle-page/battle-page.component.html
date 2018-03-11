@@ -1,23 +1,26 @@
-<h1 class="header" [ngClass]="{'team-one': turn,'team-two': !turn}">Team {{turn?'One':'Two'}}</h1>
 <button class="open-report" (click)="reportModal = true"><i class="fas fa-bell"></i></button>
 <div class="card">
-  <fiend-card
-    *ngFor="let fiend of teamOne"
-    [fiend]="fiend"
-    [attackMode]="getAttackMode(fiend)"
-    [turn]="isTurn(fiend, true)"
-    (click)="select(fiend)"
-    (onAttack)="selectUnit(fiend)"
-  ></fiend-card>
+  <section>
+    <fiend-card
+      *ngFor="let fiend of teamOne"
+      [fiend]="fiend"
+      [attackMode]="getAttackMode(fiend)"
+      [turn]="isTurn(fiend, true)"
+      (click)="select(fiend)"
+      (onAttack)="selectUnit(fiend)"
+    ></fiend-card>
+  </section>
   <hr class="border" [ngClass]="{'team-one': turn, 'team-two': !turn}">
-  <fiend-card
-    *ngFor="let fiend of teamTwo"
-    [fiend]="fiend"
-    [attackMode]="getAttackMode(fiend)"
-    [turn]="isTurn(fiend, false)"
-    (click)="select(fiend)"
-    (onAttack)="selectUnit(fiend)"
-  ></fiend-card>
+  <section>
+    <fiend-card
+      *ngFor="let fiend of teamTwo"
+      [fiend]="fiend"
+      [attackMode]="getAttackMode(fiend)"
+      [turn]="isTurn(fiend, false)"
+      (click)="select(fiend)"
+      (onAttack)="selectUnit(fiend)"
+    ></fiend-card>
+  </section>
 </div>
 
 <div *ngIf="history && history.length > 0">
