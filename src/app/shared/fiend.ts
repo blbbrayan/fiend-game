@@ -63,4 +63,18 @@ export class Fiend{
     return `${Global.rarities[this.rarity]} ${this.attribute} ${this.name}, lvl: ${this.level} hp: ${this.health} dps: ${this.damage} acc: ${this.accuracy}`;
   }
 
+  toUniqueCode(){
+    return `${this.name}-${this.rarity}-${this.level}-${this.attribute}`;
+  }
+
+  static loadUniqueCode(code){
+    let keys = code.split('-');
+
+    return {
+      name: keys[0],
+      rarity: keys[1],
+      level: keys[2],
+      attribute: keys[3]
+    }
+  }
 }

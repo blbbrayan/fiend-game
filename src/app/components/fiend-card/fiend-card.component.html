@@ -24,5 +24,9 @@
     <div>Accuracy: {{getFiend().accuracy}}</div>
     <div>Ability: {{getFiend().ability ? getFiend().ability.name : 'None'}}</div>
   </div>
+  <div class="loading" *ngIf="loading" [ngClass]="{'team-one': fiend.unit().team, 'team-two': !fiend.unit().team}">
+    <div><i class="fas fa-spinner fa-pulse"></i></div>
+    <div class="load-container"><div class="load-bar" [ngStyle]="getLoad()"></div></div>
+  </div>
 </div>
 <div class="name" *ngIf="fiend.unit()">{{fiend.unit().name}}</div>

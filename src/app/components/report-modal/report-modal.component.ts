@@ -1,6 +1,6 @@
 import {Component, OnChanges, Input, SimpleChanges, Output, EventEmitter} from '@angular/core';
-import {SquadReport} from "../shared/squad-report";
-import {AbilityReport} from "../shared/ability-report";
+import {SquadReport} from "../../shared/squad-report";
+import {AbilityReport} from "../../shared/ability-report";
 
 @Component({
   selector: 'report-modal',

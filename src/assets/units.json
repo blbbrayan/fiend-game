@@ -48,5 +48,35 @@
       "idle": 12,
       "attack": 12
     }
+  },
+  {
+    "name": "shamfie",
+    "ability": "cleanse",
+    "size": 2,
+    "tags": [],
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
+  },
+  {
+    "name": "druid",
+    "ability": "shapeshift",
+    "size": 3,
+    "tags": [],
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
+  },
+  {
+    "name": "fetish",
+    "ability": "voodoo",
+    "size": 4,
+    "tags": [],
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
   }
 ]

@@ -9,7 +9,7 @@ import {GameService} from "./services/game.service";
 })
 export class AppComponent{
 
-  page = ['sandbox', 'marketplace', 'battle'][2];
+  page = ['home', 'marketplace', 'battle', 'sandbox'][2];
 
   constructor(){}
 

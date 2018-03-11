@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Global} from "../shared/global";
+import {Global} from "../../shared/global";
 
 @Component({
   selector: 'dice',

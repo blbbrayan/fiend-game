@@ -1,0 +1,30 @@
+.shamfie_idle{animation: shamfie-idle 1.2s infinite}
+@keyframes shamfie-idle {
+  0%{ background-image: url('./idle/0.png') }
+  9%{ background-image: url('./idle/1.png') }
+  18%{ background-image: url('./idle/2.png') }
+  27%{ background-image: url('./idle/3.png') }
+  36%{ background-image: url('./idle/4.png') }
+  45%{ background-image: url('./idle/5.png') }
+  54%{ background-image: url('./idle/6.png') }
+  63%{ background-image: url('./idle/7.png') }
+  72%{ background-image: url('./idle/8.png') }
+  81%{ background-image: url('./idle/9.png') }
+  90%{ background-image: url('./idle/10.png') }
+  98%, 100%{ background-image: url('./idle/11.png') }
+}
+.shamfie_attack{animation: shamfie-attack 1.2s infinite}
+@keyframes shamfie-attack {
+  0%{ background-image: url('./attack/0.png') }
+  9%{ background-image: url('./attack/1.png') }
+  18%{ background-image: url('./attack/2.png') }
+  27%{ background-image: url('./attack/3.png') }
+  36%{ background-image: url('./attack/4.png') }
+  45%{ background-image: url('./attack/5.png') }
+  54%{ background-image: url('./attack/6.png') }
+  63%{ background-image: url('./attack/7.png') }
+  72%{ background-image: url('./attack/8.png') }
+  81%{ background-image: url('./attack/9.png') }
+  90%{ background-image: url('./attack/10.png') }
+  98%, 100%{ background-image: url('./attack/11.png') }
+}

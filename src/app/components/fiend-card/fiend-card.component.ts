@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {FiendGroup} from "../shared/fiend-group";
-import {Global} from "../shared/global";
+import {FiendGroup} from "../../shared/fiend-group";
+import {Global} from "../../shared/global";
 
 @Component({
   selector: 'fiend-card',
@@ -16,12 +16,30 @@ export class FiendCardComponent implements OnChanges{
   menu: boolean;
   animation: string = 'idle';
   selectedUnit: number = 0;
+  loading: boolean = true;
+  loadIndex: number = 0;
 
-  constructor(){}
+  constructor(){
+    setTimeout(()=>{
+      this.animation = 'attack';
+      setTimeout(()=>this.animation = 'idle', 1200);
+    }, 1200);
+    let listener = setInterval(()=>{
+      this.loadIndex++;
+      if(this.loadIndex >= 20){
+        this.loading = false;
+        clearInterval(listener);
+      }
+    }, 120);
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['attackMode'])
       this.animation = this.attackMode === true ? 'attack' : 'idle';
+  }
+
+  getLoad(){
+    return {width: this.loadIndex / 20 * 100 + '%'}
   }
 
   getState(){

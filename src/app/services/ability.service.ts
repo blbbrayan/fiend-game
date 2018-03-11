@@ -17,7 +17,8 @@ export class AbilityService {
     onMiss: 'onMiss',
     onHit: 'onHit',
     onKill: 'onKill',
-    onHitEnemy: 'onHitEnemy'
+    onHitEnemy: 'onHitEnemy',
+    onTurnStart: 'onTurnStart'
   };
 
   abilityEvent(event: string, attackReport: AttackReport, caster, target, allies, enemies, team, enemyTeam, ability?: boolean){
@@ -32,12 +33,13 @@ export class AbilityService {
     const hit = caster.accuracy >= roll;
 
     let report = new AttackReport(caster, target, roll, hit);
+    this.abilityEvent(this.abilityEvents.onTurnStart, report, caster, null, allies, null, team, enemyTeam, ability); //caster fires onTurnStart
 
     if (hit) {
       target.health -= caster.damage;
       report.damage = caster.damage;
       report.enemyKilled = target.health <= 0;
-      this.abilityEvent(this.abilityEvents.onHitEnemy, report, caster, target, allies, enemies, team, enemyTeam); //caster fires onhit
+      this.abilityEvent(this.abilityEvents.onHitEnemy, report, caster, target, allies, enemies, team, enemyTeam, ability); //caster fires onhit
       this.abilityEvent(this.abilityEvents.onHit, report, target, caster, enemies, allies, enemyTeam, team); //enemy fires onhit
       if(report.enemyKilled){
         this.abilityEvent(this.abilityEvents.onDeath, report, target, caster, enemies, allies, enemyTeam, team);//enemy fires ondeath
@@ -114,27 +116,84 @@ export class AbilityService {
         return report;
       }, 'onDeath all allies gain a small boost of health');
       case 'wind-walk': return new Ability('wind-walk', 'onHitEnemy', {damage: 1.2}, (caster, target, allies, enemies, team, enemyTeam)=>{
-        let miss = false;
         let report = new AbilityReport(caster, target, this);
-        while(!miss){
-          let attack = null;
-          enemies.update();
-          if(target.health > 0)
-            attack = this.attackFiend(caster, target, allies, enemies, team, enemyTeam, true);
-          else if(enemies.squad[0].health > 0)
-            attack = this.attackFiend(caster, enemies.squad[0], allies, enemies, team, enemyTeam, true);
-          if(attack === null)
-            miss = true;
-          else{
-            console.log('windwalk attack', attack.caster, attack.target, caster, target, allies, enemies, team, enemyTeam);
-            report.attacks.push(attack);
-            miss = !attack.hit;
-          }
-        }
-        report.desc = `The Blademaster swings until miss. (${report.attacks.length} hits)`;
+
+        enemies.squad.forEach(fiend=>
+            report.attacks.push(this.attackFiend(caster, fiend, allies, enemies, team, enemyTeam, true))
+        );
+
+        report.desc = `The Blademaster attacks all fiends in group (${report.attacks.filter(a=>a.hit).length} hits)`;
 
         return report;
-      }, 'OnKill this unit attacks any remaining units in a fiend group until it misses or until the fiend group is dead.')
+      }, 'OnHitEnemy attack all enemies in a squad.');
+      case 'cleanse': return new Ability('cleanse', 'onTurnStart', {health: .8, damage: 1.3}, (caster, target, allies)=> {
+          if(caster.health < allies.baseHealth)
+            caster.health += caster.rarity + caster.level;
+          if(caster.damage < allies.baseDamage)
+            caster.damage += caster.rarity + caster.length;
+
+          let report = new AbilityReport(caster, null, this);
+
+          report.desc = `Shamfie cleanse themselves, returning ${caster.rarity + caster.level} health and / or damage`;
+          return report;
+        }
+        ,'OnTurnStart Shamfie cleanse themselves, returning to base stats');
+      case 'shapeshift': return new Ability('shapeshift', 'onKill', {health: 1.4, damage: 0.6}, (caster, target, allies)=> {
+
+          let report = new AbilityReport(caster, null, this);
+
+          switch(allies.squad.length){
+            case 3:
+              allies.squad = [
+                new Fiend('silver-wolf', caster.rarity, caster.level, caster.attribute, 3, caster.animations, this.getAbility('life-siphon')),
+                new Fiend('silver-wolf', caster.rarity, caster.level, caster.attribute, 3, caster.animations, this.getAbility('life-siphon')),
+                new Fiend('silver-wolf', caster.rarity, caster.level, caster.attribute, 3, caster.animations, this.getAbility('life-siphon'))
+              ];
+              report.desc = `The Druids shapeshift into silver wolves!`;
+              break;
+            case 2:
+              allies.squad = [
+                new Fiend('dire-wolf', caster.rarity, caster.level, caster.attribute, 2, caster.animations, this.getAbility('life-siphon')),
+                new Fiend('dire-wolf', caster.rarity, caster.level, caster.attribute, 2, caster.animations, this.getAbility('life-siphon'))
+              ];
+              report.desc = `The Druids shapeshift into dire wolves!`;
+              break;
+            case 1:
+              allies.squad = [
+                new Fiend('dark-hound', caster.rarity, caster.level, caster.attribute, 1, caster.animations, this.getAbility('life-siphon'))
+              ];
+              report.desc = `The Druid shapeshifts into a Dark Hound!`;
+              break;
+          }
+
+          allies.baseHealth = allies.squad[0].health;
+          allies.baseDamage = allies.squad[0].damage;
+          allies.baseAccuracy = allies.squad[0].accuracy;
+
+          return report;
+        }
+        ,'OnKill The Druid will shapeshift into a wolf with life-siphon. The wolf has the same rarity, level, and attribute of the druid. The Wolf\'s size is based on how many druids are alive.');
+      case 'life-siphon': return new Ability('cleanse', 'onHitEnemy', {health: .7, damage: 1.5}, (caster, target, allies)=> {
+          caster.health += (4-caster.size) * ((caster.rarity + caster.level) / 2);
+
+          let report = new AbilityReport(caster, null, this);
+
+          report.desc = `${caster.name} gains ${(4-caster.size) * ((caster.rarity + caster.level) / 2)} health`;
+          return report;
+        }
+        ,'OnHitEnemy gain health based on size (the larger the more health).');
+      case 'voodoo': return new Ability('voodoo', 'onHit', {health: 1.1, damage: 0.9}, (caster, target, allies, enemies)=> {
+
+          enemies.squad.forEach(fiend=>{
+            fiend.health -= ~~((caster.rarity + caster.level) / 2);
+          });
+
+          let report = new AbilityReport(caster, null, this);
+
+          report.desc = `Attacking Fetish deals ${~~((caster.rarity + caster.level) / 2)} voodoo damage`;
+          return report;
+        }
+        ,'OnHit deal damage to all enemy squad attackers.');
     }
   }
 

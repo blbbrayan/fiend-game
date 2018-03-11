@@ -1,0 +1,22 @@
+[
+  {
+    "username": "korrupshun",
+    "password": "canvasman",
+    "units": [
+      "blademaster-4-4-assassin",
+      "archer-3-4-precise",
+      "druid-3-4-precise",
+      "barbarian-5-3-healthy"
+    ]
+  },
+  {
+    "username": "blbbrayan",
+    "password": "admin",
+    "units": [
+      "fetish-4-5-assassin",
+      "skeleton-4-5-assassin",
+      "shamfie-5-3-healthy",
+      "giant-5-3-assassin"
+    ]
+  }
+]

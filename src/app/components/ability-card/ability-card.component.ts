@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import {Global} from "../shared/global";
-import {AbilityReport} from "../shared/ability-report";
+import {Global} from "../../shared/global";
+import {AbilityReport} from "../../shared/ability-report";
 
 @Component({
   selector: 'ability-card',

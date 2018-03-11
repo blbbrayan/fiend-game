@@ -3,17 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { FiendCardComponent } from './fiend-card/fiend-card.component';
+import { FiendCardComponent } from './components/fiend-card/fiend-card.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { DiceComponent } from './dice/dice.component';
+import { DiceComponent } from './components/dice/dice.component';
 import { BattlePageComponent } from './battle-page/battle-page.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
-import { FiendSelectComponent } from './fiend-select/fiend-select.component';
 import { SandboxComponent } from './sandbox/sandbox.component';
 import {GameService} from "./services/game.service";
 import {AbilityService} from "./services/ability.service";
-import { ReportModalComponent } from './report-modal/report-modal.component';
-import { AbilityCardComponent } from './ability-card/ability-card.component';
+import { ReportModalComponent } from './components/report-modal/report-modal.component';
+import { AbilityCardComponent } from './components/ability-card/ability-card.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -23,10 +23,10 @@ import { AbilityCardComponent } from './ability-card/ability-card.component';
     DiceComponent,
     BattlePageComponent,
     MarketplaceComponent,
-    FiendSelectComponent,
     SandboxComponent,
     ReportModalComponent,
     AbilityCardComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
