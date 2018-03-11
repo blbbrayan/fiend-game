@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UnitGenerator} from "../shared/unit-generator";
 import {FiendGroup} from "../shared/fiend-group";
 import 'rxjs/add/operator/map';
@@ -15,7 +15,7 @@ import {AbilityReport} from "../shared/ability-report";
   templateUrl: './battle-page.component.html',
   styleUrls: ['./battle-page.component.css']
 })
-export class BattlePageComponent {
+export class BattlePageComponent implements OnInit, OnDestroy {
 
   reportModal: boolean = false;
 
@@ -51,6 +51,14 @@ export class BattlePageComponent {
           this.teamTwo.push(new FiendGroup(this.unitGenerator.generate(unit, abilityService, 5, 5), false));
         }
       });
+  }
+
+  ngOnInit(): void {
+    document.body.style.backgroundImage = 'url("assets/tile.png")';
+  }
+
+  ngOnDestroy(): void {
+    document.body.style.backgroundImage = '';
   }
 
   getAttackMode(unit) {
@@ -89,10 +97,6 @@ export class BattlePageComponent {
       this.endTurn();
       console.log(this.history[this.history.length-1]);
     }
-  }
-
-  turnStyle() {
-    return {[this.turn ? 'border-top' : 'border-bottom']: '2px solid #666'};
   }
 
   isTurn(fiend, team) {

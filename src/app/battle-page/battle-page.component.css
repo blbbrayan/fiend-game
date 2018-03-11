@@ -26,3 +26,8 @@ hr{
   color: white;
   font-size: 24px;
 }
+
+.border{
+  border: none;
+  height: 4px;
+}

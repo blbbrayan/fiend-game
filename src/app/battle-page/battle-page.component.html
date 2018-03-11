@@ -9,7 +9,7 @@
     (click)="select(fiend)"
     (onAttack)="selectUnit(fiend)"
   ></fiend-card>
-  <hr [ngStyle]="turnStyle()">
+  <hr class="border" [ngClass]="{'team-one': turn, 'team-two': !turn}">
   <fiend-card
     *ngFor="let fiend of teamTwo"
     [fiend]="fiend"
