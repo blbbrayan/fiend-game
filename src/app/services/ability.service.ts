@@ -88,7 +88,7 @@ export class AbilityService {
         report.attacks = [this.attackFiend(caster, target, allies, enemies, team, enemyTeam, true)];
         caster.accuracy = acc;
 
-        report.desc = 'Archer missed. Archer activates Precision. Archer fires one more time.' + report.attacks[0].hit ? ' Hit.' : ' Miss.';
+        report.desc = 'Archer missed. Archer activates Precision. Archer fires one more time. ' + (report.attacks[0].hit ? 'Hit.' : 'Miss.');
         return report;
       }, 'onMiss attack again at half accuracy');
       case 'rage': return new Ability('rage', 'onHit', {health: 1.4, damage:.6}, (caster, target)=> {
