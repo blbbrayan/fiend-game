@@ -30,8 +30,8 @@ export class Fiend{
 
   update(){
     const rarity = this.rarity, size = this.size, level = this.level, ability = this.ability;
-    this.health = (rarity + 6 - size) * level * 10; // 30 - 100
-    this.damage = Math.ceil((rarity + 6 - size) / 2) * level * 10; // 20 - 50
+    this.health = (rarity + level + 40 - (size - 1) * 10); // 12 - 50
+    this.damage = (rarity + level + 4 - size); // 2 - 13
     this.accuracy = (.4 + ((5 - size) / 4 * .2) + (rarity / 5 * .1)) * 100;
 
     switch (this.attribute) {

@@ -10,6 +10,7 @@
   z-index: 4;
   opacity: .8;
   cursor: pointer;
+  background-color: white;
 }
 .report:hover{
   opacity: 1;

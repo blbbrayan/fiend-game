@@ -15,6 +15,7 @@ export class AbilityReport{
     this.caster = caster;
     this.target = target;
     this.time = new Date().getTime();
+    this.attacks = [];
   }
 
 }

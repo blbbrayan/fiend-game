@@ -38,5 +38,15 @@
       "idle": 12,
       "attack": 12
     }
+  },
+  {
+    "name": "blademaster",
+    "ability": "wind-walk",
+    "size": 1,
+    "tags": [],
+    "animations": {
+      "idle": 12,
+      "attack": 12
+    }
   }
 ]

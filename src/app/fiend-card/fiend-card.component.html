@@ -12,12 +12,17 @@
       <span class="exit" (click)="menu = false"><i class="fas fa-window-close"></i></span>
       <span class="level">{{fiend.unit().level}}</span>
     </div>
-    <div>{{getRarityLabel()}}</div>
-    <div>{{fiend.unit().attribute}}</div>
-    <div>Health: {{fiend.baseHealth}}</div>
-    <div>Damage: {{fiend.baseDamage}}</div>
-    <div>Accuracy: {{fiend.baseAccuracy}}</div>
-    <div>Ability: {{fiend.unit().ability ? fiend.unit().ability.name : 'In-Dev.'}}</div>
+    <div class="unit-select">
+      <div
+        *ngFor="let unit of fiend.squad; let i = index"
+        [ngClass]="{'team-one': unit.team, 'team-two': !unit.team, 'selected': this.selectedUnit === i}"
+        (click)="selectedUnit = i"
+      ></div>
+    </div>
+    <div>Health: {{getFiend().health}}</div>
+    <div>Damage: {{getFiend().damage}}</div>
+    <div>Accuracy: {{getFiend().accuracy}}</div>
+    <div>Ability: {{getFiend().ability ? getFiend().ability.name : 'None'}}</div>
   </div>
 </div>
 <div class="name" *ngIf="fiend.unit()">{{fiend.unit().name}}</div>

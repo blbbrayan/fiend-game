@@ -13,15 +13,33 @@
     <h1 class="disclaimer">{{damage()}} Damage</h1>
     <div class="report" *ngFor="let report of reports()">
       <div class="stat" *ngIf="!isAbility(report)">
-        <div class="name">{{report.caster.name}} <i class="fas fa-gavel" *ngIf="report.target"></i> {{report.target?.name}}</div>
+        <div class="name">
+          <span [ngClass]="{'team-one-color': report.caster.team, 'team-two-color': !report.caster.team}">
+            {{report.caster.name}}
+          </span>
+          <i class="fas fa-gavel" *ngIf="report.target"></i>
+          <span *ngIf="report.target" [ngClass]="{'team-one-color': report.target.team, 'team-two-color': !report.target.team}">
+            {{report.target.name}}
+          </span>
+        </div>
         <div class="roll" [ngStyle]="{'color': report.hit ? 'green' : 'red'}">{{report.roll}}</div>
         <div>{{report.damage}} Damage</div>
         <div>{{report.enemyKilled?'Kill!':' '}}</div>
+        <div>{{report.type}}</div>
       </div>
       <div class="ability-stat" *ngIf="isAbility(report)">
-        <div>{{report.caster?.name}} <i class="fas fa-gavel" *ngIf="report.target"></i> {{report.target?.name}}</div>
+        <div>
+          <span [ngClass]="{'team-one-color': report.caster.team, 'team-two-color': !report.caster.team}">
+            {{report.caster.name}}
+          </span>
+          <i class="fas fa-gavel" *ngIf="report.target"></i>
+          <span *ngIf="report.target" [ngClass]="{'team-one-color': report.target.team, 'team-two-color': !report.target.team}">
+            {{report.target.name}}
+          </span>
+        </div>
         <div>{{report.ability?.name}}</div>
         <div>{{report.desc}}</div>
+        <div>{{report.type}}</div>
       </div>
     </div>
   </div>

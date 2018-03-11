@@ -40,6 +40,7 @@
 
 .health{
   background-color: green;
+  max-width: 100%;
 }
 
 .health-bar{
@@ -251,3 +252,25 @@
     transform: translate3d(3px, 1px, 0);
   }
 }
+
+
+.unit-select{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.unit-select div{
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  transform: rotateZ(45deg);
+  margin: 6px 0;
+  transition: .3s;
+}
+
+.unit-select div.selected{
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
+}
+

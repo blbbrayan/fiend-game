@@ -18,6 +18,7 @@ export class ReportModalComponent implements OnChanges {
   ngOnChanges(changes:SimpleChanges):void {
     this.index = this.history.length-1;
     this.innerHeight = document.body.getBoundingClientRect().height;
+    // console.log('reports', this.reports(), this.brayreports());
   }
 
   report(){
@@ -46,33 +47,38 @@ export class ReportModalComponent implements OnChanges {
     return damage;
   }
 
-  brayreports(){
+  reports(){
     let reports = [];
     if(this.report())
       this.report().reports.forEach(attackReport =>{
+        attackReport['type'] = 'attack';
         reports.push(attackReport);
         if(attackReport.abilityReports)
           attackReport.abilityReports.forEach(abilityReport=>{
+            abilityReport['type'] = 'ability';
             reports.push(abilityReport);
             if(abilityReport.attacks)
-              abilityReport.attacks.forEach(a=>reports.push(a));
+              abilityReport.attacks.forEach(a=>{
+                a['type'] = 'ability attack';
+                reports.push(a)
+              });
           });
       });
     return reports;
   }
 
-  // dads report chaining arrays
-  reports() {
-    return this.report().reports.filter(atr => {
-      return atr['abilityReports'] !== undefined;
-    }).map(atr => {
-      return atr['abilityReports'];
-    }).filter(abr => {
-      return abr['attacks'] !== undefined;
-    }).map(abr => {
-      return abr['attacks'];
-    });
-  }
+  // // dads report chaining arrays
+  // reports() {
+  //   return this.report().reports.filter(atr => {
+  //     return atr['abilityReports'] !== undefined;
+  //   }).map(atr => {
+  //     return atr['abilityReports'];
+  //   }).filter(abr => {
+  //     return abr['attacks'] !== undefined;
+  //   }).map(abr => {
+  //     return abr['attacks'];
+  //   });
+  // }
 
   attacks(){
     return this.report().reports;

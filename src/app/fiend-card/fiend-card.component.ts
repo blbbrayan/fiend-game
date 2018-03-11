@@ -15,6 +15,7 @@ export class FiendCardComponent implements OnChanges{
   @Input() turn: boolean = false;
   menu: boolean;
   animation: string = 'idle';
+  selectedUnit: number = 0;
 
   constructor(){}
 
@@ -52,6 +53,10 @@ export class FiendCardComponent implements OnChanges{
   setAttackMode(){
     this.menu = false;
     this.onAttack.emit(true);
+  }
+
+    getFiend(){
+    return this.fiend.squad[this.selectedUnit];
   }
 
 }

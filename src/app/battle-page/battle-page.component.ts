@@ -82,7 +82,8 @@ export class BattlePageComponent {
 
   select(unit) {
     if (this.attackMode && this.selectedUnit && this.selectedUnit !== unit && (this.getUnitTeam(unit) !== this.getUnitTeam(this.selectedUnit))) {
-      this.history.push(this.abilityService.attackFiendGroup(this.selectedUnit, unit));
+      console.log('teams', this.getTurnTeam(this.selectedUnit.team), this.getTurnTeam(!this.selectedUnit.team));
+      this.history.push(this.abilityService.attackFiendGroup(this.selectedUnit, unit, this.getTurnTeam(this.selectedUnit.team), this.getTurnTeam(unit)));
       this.attackMode = false;
       this.selectedUnit = undefined;
       this.endTurn();
