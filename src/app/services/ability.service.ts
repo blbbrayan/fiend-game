@@ -182,7 +182,7 @@ export class AbilityService {
           return report;
         }
         ,'OnHitEnemy gain health based on size (the larger the more health).');
-      case 'voodoo': return new Ability('voodoo', 'onHit', {health: 1.1, damage: 0.9}, (caster, target, allies, enemies)=> {
+      case 'voodoo': return new Ability('voodoo', 'onHit', {health: 1.1, damage: 0.9}, (caster, target, allies, enemies: FiendGroup)=> {
 
           enemies.squad.forEach(fiend=>{
             fiend.health -= ~~((caster.rarity + caster.level) / 2);

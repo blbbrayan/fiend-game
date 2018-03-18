@@ -1,0 +1,22 @@
+{
+  "name": "rest-crud",
+  "description": "REST CRUD Example Node.js & Mysql",
+  "version": "0.0.1",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "1.9.0",
+    "cors": "^2.8.1",
+    "drivelist": "^5.2.7",
+    "express": "4.9.5",
+    "express-myconnection": "*",
+    "express-validator": "^2.6.0",
+    "firebase-admin": "^5.4.3",
+    "nodemon": "^1.12.1",
+    "request": "^2.83.0"
+  }
+}
