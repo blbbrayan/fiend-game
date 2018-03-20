@@ -1,0 +1,7 @@
+<div class="squad" [ngClass]="getState()" *ngIf="fiend.unit()">
+  <div class="unit" *ngFor="let unit of fiend.squad">
+    <div class="img" [ngClass]="getSize(unit)">
+      <div class="rarity" [ngClass]="getRarity(unit)"></div>
+    </div>
+  </div>
+</div>
